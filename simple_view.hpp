@@ -1,11 +1,10 @@
 #ifndef H_GIL_SIMPLE_VIEW
 #define H_GIL_SIMPLE_VIEW
 
-namespace boost { namespace gil { struct image_view; }}
+namespace boost{ namespace gil{ struct image_view; }}
 
 namespace gil_simple_view
 {
-	
 	enum struct channel_type
 	{
 		bits8  ,	//  uint8_t
@@ -20,12 +19,10 @@ namespace gil_simple_view
 	enum struct color_type
 	{
 		gray_t   ,	// [gray]scale
-		
 		alpha_t  ,	// [a]rgb
 		red_t    ,	// a[r]gb
 		green_t  ,	// ar[g]b
 		blue_t   ,	// arg[b]
-		
 		cyan_t   ,	// [c]myk
 		magenta_t,	// c[m]yk
 		yellow_t ,	// cm[y]k
@@ -46,9 +43,18 @@ namespace gil_simple_view
 	
 	struct simple_view
 	{
+		channel_type                channel;
 		std::vector<color_type> color_space;
-		boost::gil::image_view* src_view
+		boost::gil::image_view*    src_view;
 	};
+	
+	bool is_8bit      (simple_view& v);
+	bool is_16bit     (simple_view& v);
+	bool is_32bit     (simple_view& v);
+	
+	bool is_unsigned  (simple_view& v);
+	bool is_signed    (simple_view& v);
+	bool is_float     (simple_view& v);
 	
 	bool is_grayscale (simple_view& v);
 	bool is_rgb       (simple_view& v);
@@ -56,7 +62,6 @@ namespace gil_simple_view
 	bool is_cmyk      (simple_view& v);
 	
 	simple_view create_simple_view (boost::gil::image_view& v);
-	
 }
 
 #endif
