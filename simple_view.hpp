@@ -40,11 +40,19 @@ namespace gil_simple_view
 		std::vector<color_type> cmyk({ color_type::cyan_t , color_type::magenta_t, color_type::yellow_t, color_type::black_t };
 	}
 	
-	struct simple_view
+	class simple_view
 	{
-		channel_type channel;
-		std::vector<color_type> color_space;
-		boost::gil::image_view* src_view;
+	private:
+		channel_type _channel;
+		std::vector<color_type> _color_space;
+		boost::gil::image_view* _src_view;
+		
+	public:
+		simple_view(channel_type& channel, std::vector<color_type>& color_space, boost::gil::image_view& src_view);
+		
+		channel_type channel();
+		std::vector<color_type> color_space();
+		boost::gil::image_view* src_view();
 	};
 	
 	// check channel type bit-wise
