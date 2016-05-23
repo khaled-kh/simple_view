@@ -5,7 +5,6 @@ namespace boost { namespace gil { struct image_view; }}
 
 namespace gil_simple_view
 {
-	
 	enum struct channel_type
 	{
 		bits8  ,	//  uint8_t
@@ -46,15 +45,18 @@ namespace gil_simple_view
 	
 	struct simple_view
 	{
+		channel_type channel;
 		std::vector<color_type> color_space;
-		boost::gil::image_view* src_view
+		boost::gil::image_view* src_view;
 	};
 	
+	// check color space type disregarding the order
 	bool is_grayscale (simple_view& v);
 	bool is_rgb       (simple_view& v);
 	bool is_argb      (simple_view& v);
 	bool is_cmyk      (simple_view& v);
 	
+	// create a simple_view from a boost::gil view
 	simple_view create_simple_view (boost::gil::image_view& v);
 	
 }
