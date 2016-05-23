@@ -1,7 +1,6 @@
 #ifndef H_GIL_SIMPLE_VIEW
 #define H_GIL_SIMPLE_VIEW
-
-namespace boost{ namespace gil{ struct image_view; }}
+#include "boost/gil/gil_all.hpp"
 
 namespace gil_simple_view
 {
@@ -69,69 +68,69 @@ namespace gil_simple_view
 	
 	template<typename L> simple_view create_simple_view (boost::gil::image_view<L>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<gray8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<gray8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<gray16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<gray16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<gray32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<gray32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<gray32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::gray8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::gray8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::gray16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::gray16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::gray32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::gray32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::gray32f_loc_t>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<rgb8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgb8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgb16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgb16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgb32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgb32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgb32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgb8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgb8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgb16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgb16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgb32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgb32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgb32f_loc_t>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<bgr8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgr8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgr16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgr16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgr32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgr32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgr32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgr8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgr8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgr16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgr16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgr32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgr32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgr32f_loc_t>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<argb8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<argb8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<argb16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<argb16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<argb32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<argb32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<argb32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::argb8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::argb8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::argb16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::argb16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::argb32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::argb32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::argb32f_loc_t>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<abgr8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<abgr8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<abgr16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<abgr16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<abgr32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<abgr32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<abgr32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::abgr8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::abgr8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::abgr16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::abgr16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::abgr32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::abgr32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::abgr32f_loc_t>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<rgba8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgba8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgba16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgba16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgba32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgba32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<rgba32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgba8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgba8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgba16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgba16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgba32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgba32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::rgba32f_loc_t>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<bgra8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgra8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgra16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgra16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgra32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgra32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<bgra32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgra8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgra8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgra16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgra16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgra32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgra32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::bgra32f_loc_t>& v);
 	
-	simple_view create_simple_view (boost::gil::image_view<cmyk8_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<cmyk8s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<cmyk16_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<cmyk16s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<cmyk32_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<cmyk32s_loc_t>& v);
-	simple_view create_simple_view (boost::gil::image_view<cmyk32f_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::cmyk8_loc_t  >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::cmyk8s_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::cmyk16_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::cmyk16s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::cmyk32_loc_t >& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::cmyk32s_loc_t>& v);
+	simple_view create_simple_view (boost::gil::image_view<boost::gil::cmyk32f_loc_t>& v);
 	
 }
 
