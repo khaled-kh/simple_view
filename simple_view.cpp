@@ -4,14 +4,47 @@ namespace gil_simple_view
 {
 	// simple_view class definition
 	
-	simple_view::simple_view(channel_type& channel, std::vector<color_type>& color_space, boost::gil::image_view& src_view)
+	simple_view::simple_view(channel_type& channel, color_space_type& color_space, boost::gil::image_view& src_view)
 	{
 		_channel = channel; _color_space = color_space; _src_view = src_view;
 	}
 	
 	channel_type            simple_view::channel()     { return _channel;     }
-	std::vector<color_type> simple_view::color_space() { return _color_space; }
+	color_space_type        simple_view::color_space() { return _color_space; }
 	boost::gil::image_view* simple_view::src_view()    { return _src_view;    }
+	
+	simple_pixel_data simple_view::at(int x, int y)
+	{
+		simple_pixel_data d;
+		d.bits32 = 0;
+		
+		switch (_channel)
+		{
+			case channel_type::bits8   :
+				d.bits8   = 1; // TODO
+				break;
+			case channel_type::bits8s  :
+				d.bits8s  = 1; // TODO
+				break;
+			case channel_type::bits16  :
+				d.bits16  = 1; // TODO
+				break;
+			case channel_type::bits16s :
+				d.bits16s = 1; // TODO
+				break;
+			case channel_type::bits32  :
+				d.bits32  = 1; // TODO
+				break;
+			case channel_type::bits32s :
+				d.bits32s = 1; // TODO
+				break;
+			case channel_type::bits32f :
+				d.bits32f = 1; // TODO
+				break;
+		}
+		
+		return d;
+	}
 	
 	// check channel type bit-wise
 	

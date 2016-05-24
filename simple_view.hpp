@@ -17,42 +17,55 @@ namespace gil_simple_view
 	
 	enum struct color_type
 	{
-		gray_t   ,	// [gray]scale
-		alpha_t  ,	// [a]rgb
-		red_t    ,	// a[r]gb
-		green_t  ,	// ar[g]b
-		blue_t   ,	// arg[b]
-		cyan_t   ,	// [c]myk
-		magenta_t,	// c[m]yk
-		yellow_t ,	// cm[y]k
-		black_t   	// cmy[k]
+		gray_t   , // [gray]scale
+		alpha_t  , // [a]rgb
+		red_t    , // a[r]gb
+		green_t  , // ar[g]b
+		blue_t   , // arg[b]
+		cyan_t   , // [c]myk
+		magenta_t, // c[m]yk
+		yellow_t , // cm[y]k
+		black_t    // cmy[k]
 	};
 	
-	namespace color_space_type
+	enum struct color_space_type
 	{
-		std::vector<color_type> gray({ color_type::gray_t });
-		std::vector<color_type> rgb ({ color_type::red_t  , color_type::green_t  , color_type::blue_t  });
-		std::vector<color_type> bgr ({ color_type::blue_t , color_type::green_t  , color_type::red_t   });
-		std::vector<color_type> argb({ color_type::alpha_t, color_type::red_t    , color_type::green_t , color_type::blue_t  });
-		std::vector<color_type> abgr({ color_type::alpha_t, color_type::blue_t   , color_type::green_t , color_type::red_t   });
-		std::vector<color_type> rgba({ color_type::red_t  , color_type::green_t  , color_type::blue_t  , color_type::alpha_t });
-		std::vector<color_type> bgra({ color_type::blue_t , color_type::green_t  , color_type::red_t   , color_type::alpha_t });
-		std::vector<color_type> cmyk({ color_type::cyan_t , color_type::magenta_t, color_type::yellow_t, color_type::black_t };
+		gray, // ({ color_type::gray_t });
+		rgb , // ({ color_type::red_t  , color_type::green_t  , color_type::blue_t  });
+		bgr , // ({ color_type::blue_t , color_type::green_t  , color_type::red_t   });
+		argb, // ({ color_type::alpha_t, color_type::red_t    , color_type::green_t , color_type::blue_t  });
+		abgr, // ({ color_type::alpha_t, color_type::blue_t   , color_type::green_t , color_type::red_t   });
+		rgba, // ({ color_type::red_t  , color_type::green_t  , color_type::blue_t  , color_type::alpha_t });
+		bgra, // ({ color_type::blue_t , color_type::green_t  , color_type::red_t   , color_type::alpha_t });
+		cmyk  // ({ color_type::cyan_t , color_type::magenta_t, color_type::yellow_t, color_type::black_t };
+	};
+	
+	typedef union
+	{
+		uint8_t  bits8;
+		int8_t   bits8s;
+		uint16_t bits16;
+		int16_t  bits16s;
+		uint32_t bits32;
+		int32_t  bits32s;
+		double   bits32f;
 	}
+	simple_pixel_data;
 	
 	class simple_view
 	{
 	private:
 		channel_type _channel;
-		std::vector<color_type> _color_space;
+		color_space_type _color_space;
 		boost::gil::image_view* _src_view;
 		
 	public:
-		simple_view(channel_type& channel, std::vector<color_type>& color_space, boost::gil::image_view& src_view);
+		simple_view(channel_type& channel, color_space_type& color_space, boost::gil::image_view& src_view);
 		
 		channel_type channel();
-		std::vector<color_type> color_space();
+		color_space_type color_space();
 		boost::gil::image_view* src_view();
+		simple_pixel_data at(int x, int y);
 	};
 	
 	// check channel type bit-wise
