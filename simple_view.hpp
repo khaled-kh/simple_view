@@ -60,12 +60,14 @@ namespace gil_simple_view
 		boost::gil::image_view* _src_view;
 		
 	public:
-		simple_view(channel_type& channel, color_space_type& color_space, boost::gil::image_view& src_view);
+		simple_view(channel_type& channel, color_space_type& color_space, boost::gil::image_view* src_view);
 		
 		channel_type channel();
 		color_space_type color_space();
 		boost::gil::image_view* src_view();
 		simple_pixel_data at(int x, int y);
+		byte at_c(simple_pixel_data p, int c);
+		byte get_color(simple_pixel_data p, color_type c);
 	};
 	
 	// check channel type bit-wise

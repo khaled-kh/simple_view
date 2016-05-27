@@ -4,7 +4,7 @@ namespace gil_simple_view
 {
 	// simple_view class definition
 	
-	simple_view::simple_view(channel_type& channel, color_space_type& color_space, boost::gil::image_view& src_view)
+	simple_view::simple_view(channel_type& channel, color_space_type& color_space, boost::gil::image_view* src_view)
 	{
 		_channel = channel; _color_space = color_space; _src_view = src_view;
 	}
@@ -21,34 +21,174 @@ namespace gil_simple_view
 		switch (_channel)
 		{
 			case channel_type::bits8   :
-				d.bits8   = 1; // TODO
+				d.bits8   =  (uint8_t)(*_src_view).col_begin(x)[y];
 				break;
 			case channel_type::bits8s  :
-				d.bits8s  = 1; // TODO
+				d.bits8s  =   (int8_t)(*_src_view).col_begin(x)[y];
 				break;
 			case channel_type::bits16  :
-				d.bits16  = 1; // TODO
+				d.bits16  = (uint16_t)(*_src_view).col_begin(x)[y];
 				break;
 			case channel_type::bits16s :
-				d.bits16s = 1; // TODO
+				d.bits16s =  (int16_t)(*_src_view).col_begin(x)[y];
 				break;
 			case channel_type::bits32  :
-				d.bits32  = 1; // TODO
+				d.bits32  = (uint32_t)(*_src_view).col_begin(x)[y];
 				break;
 			case channel_type::bits32s :
-				d.bits32s = 1; // TODO
+				d.bits32s =  (int32_t)(*_src_view).col_begin(x)[y];
 				break;
 			case channel_type::bits32f :
-				d.bits32f = 1; // TODO
+				d.bits32f =   (double)(*_src_view).col_begin(x)[y];
 				break;
 		}
 		
 		return d;
 	}
 	
+	byte simple_view::at_c(simple_pixel_data p, int c)
+	{
+		switch (_channel)
+		{
+			case channel_type::bits8   : return boost::gil::at_c<c>(p.bits8);
+			case channel_type::bits8s  : return boost::gil::at_c<c>(p.bits8s);
+			case channel_type::bits16  : return boost::gil::at_c<c>(p.bits16);
+			case channel_type::bits16s : return boost::gil::at_c<c>(p.bits16s);
+			case channel_type::bits32  : return boost::gil::at_c<c>(p.bits32);
+			case channel_type::bits32s : return boost::gil::at_c<c>(p.bits32s);
+			case channel_type::bits32f : return boost::gil::at_c<c>(p.bits32f);
+			default: return 0;
+		}
+	}
+	
+	byte simple_view::get_color(simple_pixel_data p, color_type c)
+	{
+		switch (c)
+		{
+			case color_type::gray_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return at_c(p,0);
+					case color_space_type::rgb : return 0;
+					case color_space_type::bgr : return 0;
+					case color_space_type::argb: return 0;
+					case color_space_type::abgr: return 0;
+					case color_space_type::rgba: return 0;
+					case color_space_type::bgra: return 0;
+					case color_space_type::cmyk: return 0;
+					default: return 0;
+				}
+			case color_type::alpha_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 255;
+					case color_space_type::rgb : return 255;
+					case color_space_type::bgr : return 255;
+					case color_space_type::argb: return at_c(p,0);
+					case color_space_type::abgr: return at_c(p,0);
+					case color_space_type::rgba: return at_c(p,3);
+					case color_space_type::bgra: return at_c(p,3);
+					case color_space_type::cmyk: return 255;
+					default: return 0;
+				}
+			case color_type::red_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 0;
+					case color_space_type::rgb : return at_c(p,0);
+					case color_space_type::bgr : return at_c(p,2);
+					case color_space_type::argb: return at_c(p,1);
+					case color_space_type::abgr: return at_c(p,3);
+					case color_space_type::rgba: return at_c(p,0);
+					case color_space_type::bgra: return at_c(p,2);
+					case color_space_type::cmyk: return 0;
+					default: return 0;
+				}
+			case color_type::green_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 0;
+					case color_space_type::rgb : return at_c(p,1);
+					case color_space_type::bgr : return at_c(p,1);
+					case color_space_type::argb: return at_c(p,2);
+					case color_space_type::abgr: return at_c(p,2);
+					case color_space_type::rgba: return at_c(p,1);
+					case color_space_type::bgra: return at_c(p,1);
+					case color_space_type::cmyk: return 0;
+					default: return 0;
+				}
+			case color_type::blue_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 0;
+					case color_space_type::rgb : return at_c(p,2);
+					case color_space_type::bgr : return at_c(p,0);
+					case color_space_type::argb: return at_c(p,3);
+					case color_space_type::abgr: return at_c(p,1);
+					case color_space_type::rgba: return at_c(p,2);
+					case color_space_type::bgra: return at_c(p,0);
+					case color_space_type::cmyk: return 0;
+					default: return 0;
+				}
+			case color_type::cyan_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 0;
+					case color_space_type::rgb : return 0;
+					case color_space_type::bgr : return 0;
+					case color_space_type::argb: return 0;
+					case color_space_type::abgr: return 0;
+					case color_space_type::rgba: return 0;
+					case color_space_type::bgra: return 0;
+					case color_space_type::cmyk: return at_c(p,0);
+					default: return 0;
+				}
+			case color_type::magenta_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 0;
+					case color_space_type::rgb : return 0;
+					case color_space_type::bgr : return 0;
+					case color_space_type::argb: return 0;
+					case color_space_type::abgr: return 0;
+					case color_space_type::rgba: return 0;
+					case color_space_type::bgra: return 0;
+					case color_space_type::cmyk: return at_c(p,1);
+					default: return 0;
+				}
+			case color_type::yellow_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 0;
+					case color_space_type::rgb : return 0;
+					case color_space_type::bgr : return 0;
+					case color_space_type::argb: return 0;
+					case color_space_type::abgr: return 0;
+					case color_space_type::rgba: return 0;
+					case color_space_type::bgra: return 0;
+					case color_space_type::cmyk: return at_c(p,2);
+					default: return 0;
+				}
+			case color_type::black_t:
+				switch (_color_space)
+				{
+					case color_space_type::gray: return 0;
+					case color_space_type::rgb : return 0;
+					case color_space_type::bgr : return 0;
+					case color_space_type::argb: return 0;
+					case color_space_type::abgr: return 0;
+					case color_space_type::rgba: return 0;
+					case color_space_type::bgra: return 0;
+					case color_space_type::cmyk: return at_c(p,3);
+					default: return 0;
+				}
+			default: return 0;
+		}
+	}
+	
 	// check channel type bit-wise
 	
-	bool is_8bit      (simple_view& v)
+	bool is_8bit (simple_view& v)
 	{
 		switch(v.channel())
 		{
@@ -58,7 +198,7 @@ namespace gil_simple_view
 		}
 	}
 	
-	bool is_16bit     (simple_view& v)
+	bool is_16bit (simple_view& v)
 	{
 		switch(v.channel())
 		{
@@ -68,7 +208,7 @@ namespace gil_simple_view
 		}
 	}
 	
-	bool is_32bit     (simple_view& v)
+	bool is_32bit (simple_view& v)
 	{
 		switch(v.channel())
 		{
@@ -81,7 +221,7 @@ namespace gil_simple_view
 	
 	// check channel type representation-wise
 	
-	bool is_unsigned  (simple_view& v)
+	bool is_unsigned (simple_view& v)
 	{
 		switch(v.channel())
 		{
@@ -92,7 +232,7 @@ namespace gil_simple_view
 		}
 	}
 	
-	bool is_signed    (simple_view& v)
+	bool is_signed (simple_view& v)
 	{
 		switch(v.channel())
 		{
@@ -103,7 +243,7 @@ namespace gil_simple_view
 		}
 	}
 	
-	bool is_float     (simple_view& v)
+	bool is_float (simple_view& v)
 	{
 		switch(v.channel())
 		{
@@ -123,7 +263,7 @@ namespace gil_simple_view
 		}
 	}
 	
-	bool is_rgb       (simple_view& v)
+	bool is_rgb (simple_view& v)
 	{
 		switch(v.color_space())
 		{
@@ -133,7 +273,7 @@ namespace gil_simple_view
 		}
 	}
 	
-	bool is_argb      (simple_view& v)
+	bool is_argb (simple_view& v)
 	{
 		switch(v.color_space())
 		{
@@ -145,7 +285,7 @@ namespace gil_simple_view
 		}
 	}
 	
-	bool is_cmyk      (simple_view& v)
+	bool is_cmyk (simple_view& v)
 	{
 		switch(v.color_space())
 		{
